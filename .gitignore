@@ -1,0 +1,22 @@
+# Rust build artifacts
+/target/
+
+# Generated bootable images & binaries (bootloader, QEMU artifacts)
+*.bin
+*.iso
+*.img
+
+# Backup & temporary editor files
+*~
+*.swp
+*.swo
+
+# IDE & Editor configurations
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS metadata
+.DS_Store
+Thumbs.db
