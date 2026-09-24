@@ -5,28 +5,22 @@
 #![reexport_test_harness_main = "test_main"]
 
 use core::panic::PanicInfo;
-use tiny_os::println;
 
 #[unsafe(no_mangle)]
 pub extern "C" fn _start() -> ! {
-    println!("Hello World{}", "!");
-
-    #[cfg(test)]
     test_main();
 
-    loop {}
+    loop{}
 }
 
-/// This function is called on panic.
-#[cfg(not(test))]
 #[panic_handler]
 fn panic(info: &PanicInfo) -> ! {
-    println!("{}", info);
-    loop {}
+    tiny_os::test_panic_handler(info);
 }
 
-#[cfg(test)]
-#[panic_handler]
-fn panic(info: &PanicInfo) -> ! {
-    tiny_os:: test_panic_handler(info)
+use tiny_os::println;
+
+#[test_case]
+fn test_println() {
+    println!("test_println output");
 }
